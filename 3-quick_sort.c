@@ -23,7 +23,7 @@ void sort_array(int *array, int init, int end, size_t size)
 
 	if (init < end)
 	{
-		pivot = partition(array, low, high, size);
+		pivot = partition(array, init, high, size);
 		sort_array(array, low, pivot - 1, size);
 		sort_array(array, pivot + 1, high, size);
 	}
@@ -44,7 +44,7 @@ int partition(int *array, int init, int end, size_t size)
 	pivot = array[end];
 
 	i = init - 1;
-	for (j = init; j < low; j++)
+	for (j = init; j < end; j++)
 	{
 		if (array[j] <= pivot)
 		{
