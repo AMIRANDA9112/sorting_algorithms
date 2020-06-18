@@ -19,33 +19,32 @@ void insertion_sort_list(listint_t **list)
 	{
 		buffer = *list;
 
-		while (buffer)
+		while (buffer->next)
         {
 		    after = buffer->next;
             before = buffer->prev;
 		while (buffer->prev) {
-            after = buffer->next;
-            before = buffer->prev;
-            if (buffer->n > after->n) {
-                if (buffer->prev == NULL && after->next == NULL) {
+
+            if (buffer->n < before->n) {
+                if (before->prev == NULL && buffer->next == NULL) {
                     sort = buffer;
-                    buffer = after;
+                    buffer = before;
                     buffer->prev = NULL;
                     buffer->next = sort;
                     sort->prev = buffer;
                     sort->next = NULL;
                     *list = buffer;
-                } else if (buffer->prev == NULL) {
+                } else if (before->prev == NULL) {
                     sort = buffer;
-                    buffer = after;
+                    buffer = before;
                     buffer->prev = NULL;
                     buffer->next = sort;
                     sort->prev = buffer;
-                    sort->next = before->next;
+                    sort->next = after->prev;
                     *list = buffer;
-                } else if (after->next == NULL) {
+                } else if (buffer->next == NULL) {
                     sort = buffer;
-                    buffer = after;
+                    buffer = before;
                     buffer->prev = before;
                     buffer->next = sort;
                     sort->prev = buffer;
@@ -53,22 +52,19 @@ void insertion_sort_list(listint_t **list)
                     *list = buffer;
                 } else {
                     sort = buffer;
-                    buffer = after;
+                    buffer = before;
                     buffer->prev = before;
                     buffer->next = sort;
                     sort->prev = buffer;
-                    sort->next = before->next;
+                    sort->next = after->prev;
                     *list = buffer;
                 }
                 print_list(before);
             } else {
-                buffer = buffer->next;
+                break;
             }
             }
 		}
-
 		   buffer = buffer->next;
-
-
 	}
 }
