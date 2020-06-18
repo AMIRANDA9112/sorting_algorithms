@@ -63,30 +63,7 @@ int partition(int *array, int init, int end, size_t size)
 	{
 		temp = array[i];
 		array[i] = array[end];
-		array[init] = temp;
-		print_array(array, size);
-	}
-	return (i);
-}
-
-		if (array[j] <= pivot)
-		{
-			i++;
-			if (i != j)
-			{
-				temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-				print_array(array, size);
-			}
-		}
-	}
-	i++;
-	if (i != j)
-	{
-		temp = array[i];
-		array[i] = array[end];
-		array[init] = temp;
+		array[end] = temp;
 		print_array(array, size);
 	}
 	return (i);
