@@ -21,9 +21,9 @@ void insertion_sort_list(listint_t **list)
 
 		while (buffer)
         {
-		if(!buffer->prev)
-		{
-		while (buffer->next) {
+		    after = buffer->next;
+            before = buffer->prev;
+		while (buffer->prev) {
             after = buffer->next;
             before = buffer->prev;
             if (buffer->n > after->n) {
@@ -60,16 +60,15 @@ void insertion_sort_list(listint_t **list)
                     sort->next = before->next;
                     *list = buffer;
                 }
-                print_list(sort);
+                print_list(before);
             } else {
                 buffer = buffer->next;
             }
             }
 		}
-		else
-        {
-		   buffer = buffer->prev;
-        }
-        }
+
+		   buffer = buffer->next;
+
+
 	}
 }
